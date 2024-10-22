@@ -34,9 +34,15 @@ codeunit 50124 "Sales Forecaster "
 
     local procedure GetForecastDate(var ForecastDate: Date): Boolean
     var
-        myInt: Integer;
+        ForeCastDataPage: Page "Forecast Date Input";
     begin
-
+        ForeCastDataPage.RunModal();
+        ForecastDate := ForeCastDataPage.GetForecastDate();
+        if ForecastDate = 0D then begin
+            Error('Please Enter a valid forecast date');
+            exit(false);
+        end;
+        exit(true);
     end;
 
 
